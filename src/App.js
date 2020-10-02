@@ -3,13 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
 import School from './School/School';
+import person from './Person/Person';
 class App extends Component {
   state = {
     person : [
-      { name : 'Max', age : 29},
-      { name : 'Manu', age:30},
-      { name: 'Amy', age:90}
-    ]
+      { name : 'Max', age : 29  ,id:"feafe"},
+      { name : 'Manu', age:30 ,id:"f4eag"},
+      { name: 'Amy', age:90 ,id:"32r3f"}
+    ],
+    showPersons : false
   }
   switchNameHandler = () =>{
     console.log("clicked");
@@ -21,7 +23,17 @@ class App extends Component {
       ]
     });
   }
+  showPersons = () =>{
+    let cur = this.state.showPersons;
+    this.setState({showPersons:!cur});
+  }
+  deleteHandler = (id) =>{
+    let newPerson = this.state.person.filter(person => person.id!=id);
+    this.setState({person : newPerson});
 
+
+
+  }
   render() {
     const style={
       backgroundColor:'white',
@@ -29,6 +41,21 @@ class App extends Component {
       border:'1x solid blue',
       padding:'8px',
       cursor:'pointer'
+    }
+    let personBlock = null;
+    if(this.state.showPersons){
+      console.log("build person")
+      personBlock = (
+        <div>
+          {this.state.person.map( (p) => {
+            return <Person 
+            name={p.name} 
+            age={p.age}
+            delete={()=>{return this.deleteHandler(p.id)}}
+            key={p.id}/>
+          })}
+        </div>
+      )
     }
     return (
       <div className="App">
@@ -42,10 +69,10 @@ class App extends Component {
         <School ></School>
         
         <p></p>
-        <button style={style} onClick={this.switchNameHandler}>Switch name</button>
-        <Person name={this.state.person[0].name} age = {this.state.person[0].age}/>
-        <Person name={this.state.person[1].name} age = {this.state.person[1].age}/>
-        <Person name={this.state.person[2].name} age = {this.state.person[2].age}/>
+        <button style={style} onClick={this.showPersons}>Show Person</button>
+        
+        
+        {personBlock}
          
       </div>
     );
