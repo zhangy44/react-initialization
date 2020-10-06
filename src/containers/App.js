@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
-import Person from './Person/Person';
-import School from './School/School';
-import person from './Person/Person';
+import Person from '../components/Person/Person';
+import School from '../components/School/School';
 class App extends Component {
   state = {
     person : [
@@ -30,8 +29,6 @@ class App extends Component {
   deleteHandler = (id) =>{
     let newPerson = this.state.person.filter(person => person.id!=id);
     this.setState({person : newPerson});
-
-
 
   }
   render() {
