@@ -13,7 +13,7 @@ class App extends Component {
     showPersons : false
   }
   switchNameHandler = () =>{
-    console.log("clicked");
+    
     this.setState({
       person: [
         { name: 'Maximilian', age: 28 },
@@ -31,6 +31,14 @@ class App extends Component {
     this.setState({person : newPerson});
 
   }
+  changeHandler = (event,id) =>{
+    let personIndex = this.state.person.findIndex( p => p.id === id);
+    let personNewName = event.target.value;
+    let newPersons = [...this.state.person];
+    newPersons[personIndex].name = personNewName;
+    this.setState({person : newPersons});
+    
+  }
   render() {
     const style={
       backgroundColor:'white',
@@ -41,7 +49,7 @@ class App extends Component {
     }
     let personBlock = null;
     if(this.state.showPersons){
-      console.log("build person")
+      
       personBlock = (
         <div>
           {this.state.person.map( (p) => {
@@ -49,6 +57,7 @@ class App extends Component {
             name={p.name} 
             age={p.age}
             delete={()=>{return this.deleteHandler(p.id)}}
+            change={(event)=> {return this.changeHandler(event,p.id)}}
             key={p.id}/>
           })}
         </div>
