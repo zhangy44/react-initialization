@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import './App.css';
 import Person from '../components/Person/Person';
 import School from '../components/School/School';
+import WithClass from '../components/hoc/WithClass';
 class App extends Component {
   state = {
     person : [
@@ -64,7 +65,7 @@ class App extends Component {
       )
     }
     return (
-      <div className="App">
+      <WithClass classes="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
@@ -80,7 +81,7 @@ class App extends Component {
         
         {personBlock}
          
-      </div>
+      </WithClass>
     );
   }
 }
