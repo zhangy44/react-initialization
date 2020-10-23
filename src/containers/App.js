@@ -65,7 +65,7 @@ class App extends Component {
       )
     }
     return (
-      <WithClass classes="App">
+      <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
@@ -81,7 +81,7 @@ class App extends Component {
         
         {personBlock}
          
-      </WithClass>
+      </div>
     );
   }
 }
